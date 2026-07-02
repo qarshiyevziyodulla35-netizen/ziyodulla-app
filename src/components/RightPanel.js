@@ -120,7 +120,7 @@ function ClaudeChat() {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
-    'x-api-key': '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',
+    'x-api-key':'x-api-key': process.env.REACT_APP_CLAUDE_API_KEY,
     'anthropic-version': '2023-06-01',
     'anthropic-dangerous-allow-browser': 'true',
   },
