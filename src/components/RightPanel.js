@@ -116,22 +116,15 @@ function ClaudeChat() {
     setLoading(true);
 
     try {
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const response = await fetch('/api/chat', {
   method: 'POST',
-  headers: { 
-    'Content-Type': 'application/json',
-    'x-api-key': process.env.REACT_APP_CLAUDE_API_KEY,
-    'anthropic-version': '2023-06-01',
-  },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 500,
-          system: 'Sen Ziyodullaning shaxsiy AI yordamchisisan. Uning ikkinchi miyasi, eslatmalari va vazifalari bor. Qisqa va aniq javob ber. O\'zbek tilida gapir.',
-          messages: [{ role: 'user', content: userMsg }]
-        })
-      });
-      const data = await response.json();
-      const text = data.content?.[0]?.text || 'Xatolik yuz berdi.';
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    messages: [{ role: 'user', content: userMsg }]
+  })
+});
+const data = await response.json();
+const text = data.content?.[0]?.text || 'Xatolik yuz berdi.';
       setMessages(prev => [...prev, { role: 'ai', text }]);
     } catch {
       setMessages(prev => [...prev, { role: 'ai', text: 'Ulanishda xatolik. API kalitni tekshiring.' }]);
