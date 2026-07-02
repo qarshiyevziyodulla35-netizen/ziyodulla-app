@@ -116,10 +116,18 @@ function ClaudeChat() {
     setLoading(true);
 
     try {
-    const response = await fetch('/api/chat', {
+   const response = await fetch('https://api.anthropic.com/v1/messages', {
   method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
+  headers: {
+    'Content-Type': 'application/json',
+    'x-api-key': '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',
+    'anthropic-version': '2023-06-01',
+    'anthropic-dangerous-allow-browser': 'true',
+  },
   body: JSON.stringify({
+    model: 'claude-sonnet-4-6',
+    max_tokens: 500,
+    system: "Sen Ziyodullaning shaxsiy AI yordamchisisan. O'zbek tilida qisqa javob ber.",
     messages: [{ role: 'user', content: userMsg }]
   })
 });
