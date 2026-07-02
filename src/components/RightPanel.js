@@ -1,3 +1,4 @@
+import CONFIG from '../config';
 import React, { useEffect, useRef, useState } from 'react';
 
 const DAYS = ['Du', 'Se', 'Ch', 'Pa', 'Ju', 'Sh', 'Ya'];
@@ -120,7 +121,7 @@ function ClaudeChat() {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
-    'x-api-key':'x-api-key': process.env.REACT_APP_CLAUDE_API_KEY,
+    'x-api-key': CONFIG.CLAUDE_API_KEY,
     'anthropic-version': '2023-06-01',
     'anthropic-dangerous-allow-browser': 'true',
   },
